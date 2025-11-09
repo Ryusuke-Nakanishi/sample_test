@@ -1,0 +1,45 @@
+/**
+* このファイルを使って、独自の関数やブロックを定義してください。
+* 詳しくはこちらを参照してください：https://minecraft.makecode.com/blocks/custom
+*/
+
+enum MyEnum {
+    //% block="one"
+    One,
+    //% block="two"
+    Two
+}
+
+/**
+* カラフルな炎のパーティクル
+*/
+declare const enum FlameParticle {
+    //% block="🔥 あかいろ"
+    RedFlame,
+    //% block="🟢 みどりいろ"
+    GreenFlame,
+    //% block="🔵 あおいろ"
+    BlueFlame,
+    //% block="🟣 むらさきいろ"
+    PurpleFlame,
+    //% block="🟠 オレンジいろ"
+    OrangeFlame
+}
+
+/**
+ * Custom blocks
+ */
+//% color=#5B9BD5 icon="\uf06e" block="まほう"
+namespace magic {
+    //% block="✨ %particle の まほうをつける"
+    //% blockExternalInputs=true
+    //% particle.defl=FlameParticle.RedFlame
+    export function emitParticleAtProjectiles(particle: FlameParticle) {
+        // それぞれのエンティティの足元でパーティクルを生成
+        mobs.enchant(
+            mobs.target(NEAREST_PLAYER),
+            "flame",
+            1
+        )
+    }
+}
